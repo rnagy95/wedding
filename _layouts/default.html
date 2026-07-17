@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <meta name="description" content="{{ site.description }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  </head>
+  <body>
+    <button class="nav-toggle" type="button" aria-label="Menü megnyitása" aria-expanded="false" aria-controls="site-nav-links">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-backdrop" aria-hidden="true"></div>
+    <nav class="site-nav" id="site-nav-links" aria-label="Navigáció">
+      <a href="#hero">Főoldal</a>
+      <a href="#invitation">Meghívó</a>
+      <a href="#location">Helyszín</a>
+      <a href="#schedule">Menetrend</a>
+      <a href="#information">Információk</a>
+    </nav>
+    <main class="page">
+      {{ content }}
+    </main>
+    <script>
+      const toggle = document.querySelector('.nav-toggle');
+      const nav = document.querySelector('.site-nav');
+      const backdrop = document.querySelector('.nav-backdrop');
+      const heroName = document.getElementById('hero-name');
+
+      if (toggle && nav) {
+        const closeMenu = () => {
+          nav.classList.remove('is-open');
+          toggle.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+          backdrop?.classList.remove('is-active');
+        };
+
+        toggle.addEventListener('click', () => {
+          const isOpen = nav.classList.toggle('is-open');
+          toggle.classList.toggle('is-open', isOpen);
+          toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          backdrop?.classList.toggle('is-active', isOpen);
+        });
+
+        nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+        backdrop?.addEventListener('click', closeMenu);
+      }
+
+      if (heroName) {
+        const text = heroName.dataset.text || heroName.textContent || '';
+        const heroContents = document.getElementById('hero-contents');
+        heroName.textContent = '';
+        let index = 0;
+
+        const typeText = () => {
+          if (index <= text.length) {
+            heroName.textContent = text.slice(0, index);
+            index += 1;
+            window.setTimeout(typeText, 70);
+          } else if (heroContents) {
+            heroContents.classList.add('is-visible');
+          }
+        };
+
+        window.setTimeout(typeText, 350);
+      }
+    </script>
+  </body>
+</html>

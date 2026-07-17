@@ -1,0 +1,11 @@
+title: "Amanda & Richárd"
+description: "Wedding invitation website for Amanda Mócik and Richárd Nagy."
+baseurl: "/wedding"
+url: "https://rnagy95.github.io"
+markdown: kramdown
+permalink: pretty
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .github
