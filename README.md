@@ -16,3 +16,11 @@ This project is a minimal, elegant Jekyll site for the wedding invitation.
 3. Run `bundle exec jekyll serve`.
 
 The site is designed to be hosted on GitHub Pages.
+
+## License
+
+This repository is licensed under the MIT License for the software code and non-content assets.
+
+However, the website content and personal information are not included in that license grant. This includes the invitation text, names, dates, locations, personal details, and any other content specific to the event. Those elements may not be reused, redistributed, or adapted without explicit written permission.
+
+See [LICENSE](LICENSE) for the full text.
